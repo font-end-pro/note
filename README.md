@@ -1,7 +1,7 @@
 <h1 style="align:center">DEV NOTE PRO</h1>
 
 ![CI](https://github.com/thuongtruong1009/dev-note.github/workflows/ci.yml/badge.svg)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7f78f2b7-50a9-4a7c-a6a5-b7b8e2acd767/deploy-status)](https://notedev.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8bd774c5-b4ed-4051-bc13-bfa07537d972/deploy-status)](https://app.netlify.com/sites/notehome/deploys)
 
 ---
 ### Screen shots
