@@ -4,14 +4,16 @@
     <h1>{{ msg }}</h1>
   </header>
   <div class="container">
-    <form @submit.prevent="addNewToDo" method="POST" data-netlify="true">
+    <form @submit.prevent="addNewToDo" name="ask-question" method="post"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field">
       <input
         type="text"
         placeholder="✎ add somethings daily to do..."
         onfocus="this.placeholder = ''"
         onblur="this.placeholder = '✎ add somethings daily to do...'"
         v-model="inputData"
-        name="newToDo"
+        name="newToDo" value="ask-question"
       />
       <button type="submit">
         <ion-icon name="bookmarks-outline"></ion-icon> Add
