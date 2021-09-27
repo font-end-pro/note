@@ -4,7 +4,7 @@
     <h1>{{ msg }}</h1>
   </header>
   <div class="container">
-    <form @submit.prevent="addNewToDo">
+    <form @submit.prevent="addNewToDo" netlify>
       <input
         type="text"
         placeholder="✎ add somethings daily to do..."
