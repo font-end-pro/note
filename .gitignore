@@ -1,58 +1,28 @@
-# Node modules
-node_modules/
-
 # Logs
-logs/
+logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Vue.js local development server
-.vite/
+node_modules
+.DS_Store
+dist
+dist-ssr
+coverage
+*.local
 
-# Dependency directories
-jspm_packages/
-
-# Compiled output
-dist/
-build/
-
-# Environment variables
-.env
-.env.local
-.env.*.local
+/cypress/videos/
+/cypress/screenshots/
 
 # Editor directories and files
-.idea/
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+.idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-# MacOS files
-.DS_Store
-
-# Windows files
-Thumbs.db
-
-# Typescript cache
-*.tsbuildinfo
-
-# Yarn v2
-.yarn/cache
-.yarn/unplugged
-.yarn/build-state.yml
-.yarn/install-state.gz
-.pnp.*
-
-# Optional npm cache directory
-.npm/
-
-# ESLint cache
-.eslintcache
-
-# Stylelint cache
-.stylelintcache

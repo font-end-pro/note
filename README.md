@@ -1,60 +1,59 @@
-<h1 style="align:center">DEV NOTE PRO</h1>
+# notedev
 
-![CI](https://github.com/thuongtruong1009/dev-note.github/workflows/ci.yml/badge.svg)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8bd774c5-b4ed-4051-bc13-bfa07537d972/deploy-status)](https://app.netlify.com/sites/notehome/deploys)
+This template should help get you started developing with Vue 3 in Vite.
 
----
-### Screen shots
-![screenshots](./src/assets/screenshots/light_main_screen.png)
+## Recommended IDE Setup
 
-![screenshots](./src/assets/screenshots/dark_main_screen.png)
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
 
----
-### How to install - ViteJs 3 template at https://vitejs.dev/
-+ Install NodeJs and NPM module at https://nodejs.org/
-+ Check version, use cmd or any text editor.
-```script
-$ node --v
-$ npm --v
-```
-+ With NPM
-```script
-$ npm init vite@latest
-----------------------------------------------------------
-npm init vite@latest my-vue-app -- --template vue
-```
-+ With YARN
-```script
-$ yarn create vite
-----------------------------------------------------------
-yarn create vite my-vue-app --template vue
-```
-+ To install configs and modules pf NPM
-```script
+## Type Support for `.vue` Imports in TS
+
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+
+1. Disable the built-in TypeScript Extension
+    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+## Customize configuration
+
+See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Project Setup
+
+```sh
 npm install
 ```
-+ To run virtual internal preview on browser
-```script
+
+### Compile and Hot-Reload for Development
+
+```sh
 npm run dev
 ```
-+ To build production on website
-```script
+
+### Type-Check, Compile and Minify for Production
+
+```sh
 npm run build
 ```
-+ To deploy project on GithubPage
-```script
-add dist folder on repository
-In setting tab, click to Github Page and deploy it. The URL of your website like as https://thuongtruong1009.github.io/notedev/
-```
----
-### Refference
-- Recommended IDE Setup [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
-- Use Netlify to build product - https://netlify.com/
-- Get icon packages at https://ionicons.com/
-- Learn HTML/CSS/Javascipt at https://github.com/thuongtruong1009/
----
-### --> You can clone/fork/download or contribute and discuss them to develop. It can save it on release history.
-### --> All problems or contact should take a mail to ititiu19228@student.hcmiu.edu.vn
-### --> Support me at 
-### Thank you!
 
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:unit
+```
+
+### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+
+```sh
+npm run build
+npm run test:e2e # or `npm run test:e2e:ci` for headless testing
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
