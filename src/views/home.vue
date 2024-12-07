@@ -1,15 +1,18 @@
-<script setup lang="ts">
-import Input from '@/components/Input.vue'
-import Pending from '@/components/Pending.vue'
-import Done from '@/components/Done.vue'
+<script setup>
+import { ref } from "vue";
+import Panel from "@/components/kanban/Panel.vue";
+
+const items = ref([
+  { id: 0, title: 'Item A', list: 1 },
+  { id: 1, title: 'Item B', list: 1 },
+  { id: 2, title: 'Item C', list: 1 },
+  { id: 3, title: 'Item D', list: 2 }
+])
+
 </script>
 
 <template>
-  <main>
-    <Input />
-    <div class="flex gap-5 p-5">
-      <Pending class="basis-1/2" />
-      <Done class="basis-1/2" />
-    </div>
-  </main>
+  <section class="about text-start py-10 px-20">
+    <Panel :items="items" :sort="true" />
+  </section>
 </template>

@@ -1,3 +1,28 @@
+<script setup>
+import { ref } from "vue";
+import Main from "@/components/dd/Main.vue";
+import Panel from "@/components/kanban/Panel.vue";
+
+// import CodePre from '@/components/examples/CodePre.vue'
+// import PropsList from '@/components/examples/PropsList.vue'
+// import ButtonsList from '@/components/examples/ButtonsList.vue'
+
+const items = ref([
+  { id: 0, title: 'Item A', list: 1 },
+  { id: 1, title: 'Item B', list: 1 },
+  { id: 2, title: 'Item C', list: 1 },
+  { id: 3, title: 'Item D', list: 2 }
+])
+
+// const propsList = [
+//   { name: 'items', text: 'Object[] - items for list.' },
+//   {
+//     name: 'sort',
+//     text: 'Boolean - enable / disable sorting as in a simple example.'
+//   }
+// ]
+</script>
+
 <template>
   <div class="about text-start py-10 px-20">
     <div class="py-5 text-3xl font-medium">
@@ -21,6 +46,10 @@
     <div>
       <p><a class="text-gray-800 font-medium dark:text-[#14A348]" href="https://github.com/thuongtruong1009/notedev/LICENSE">MIT license</a> 2022 of <a class="text-gray-800 font-medium dark:text-[#14A348]" href="https://github.com/thuongtruong1009">@thuongtruong1009</a>.</p>
     </div>
+
+    <Panel :items="items" :sort="true" />
+
+    <Main />
   </div>
 </template>
 

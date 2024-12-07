@@ -16,12 +16,14 @@ const onSaveNote = () => {
 </script>
 
 <template>
-  <div class="input-container flex justify-center py-10">
-    <div class="input-wrapper drop-shadow-3xl w-max h-10 rounded-full flex dark:drop-shadow-lg">
+  <div class="flex justify-center py-10">
+    <div class="drop-shadow-lg w-max h-10 rounded-full flex dark:drop-shadow-lg">
       <input
         type="text"
-        class="w-[25rem] h-full rounded-l-3xl px-5 py-2 dark:bg-slate-800"
-        placeholder="Input somethings to do..."
+        class="w-[25rem] h-full rounded-l-3xl px-5 py-2 dark:bg-slate-800 placeholder:italic placeholder:text-sm"
+        placeholder="✎ Input somethings to do..."
+        onfocus="this.placeholder = ''"
+        onblur="this.placeholder = '✎ add new task...'"
         v-model="noteInput"
         @keyup.enter="onSaveNote"
       />
@@ -34,13 +36,3 @@ const onSaveNote = () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-input::placeholder {
-  font-style: italic;
-  font-size: 0.9em;
-}
-.input-wrapper{
-  box-shadow: 2px 2px 4px #888;
-}
-</style>
