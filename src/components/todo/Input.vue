@@ -2,7 +2,7 @@
 import Input from '@/components/common/Input.vue'
 import Button from '@/components/common/Button.vue'
 import IAdd from '@/components/icons/IAdd.vue'
-import IPending from '@/components/icons/IPending.vue'
+import IPending from '@/components/todo/PendingIcon.vue'
 import { useToDoStore } from '@/stores/todo'
 import { ref } from 'vue'
 const store = useToDoStore()

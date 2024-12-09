@@ -11,7 +11,7 @@ import Header from './components/header/Header.vue'
   >
     <Header />
 
-    <div class="flex flex-row justify-center w-full max-w-screen-md mx-auto">
+    <div class="flex flex-row justify-center w-full max-w-screen-md mx-auto px-4">
       <Transition name="slide-fade">
         <RouterView />
       </Transition>

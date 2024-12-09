@@ -34,24 +34,13 @@ const isPreview = ref<boolean>(false)
       <div
         class="flex items-center border border-slate-200 dark:border-slate-600 p-0.5 rounded-lg dark:text-slate-300"
       >
-        <button
-          type="button"
-          class="inline-flex items-center space-x-1 py-2 px-3 text-xs text-center rounded-lg"
-          :class="{ 'bg-slate-200 dark:bg-gray-600 font-semibold ': !isPreview }"
-          @click="isPreview = false"
-        >
-          <EditorIcon />
-          <span>Editor</span>
-        </button>
-        <button
-          type="button"
-          class="inline-flex items-center space-x-1 py-2 px-3 text-xs text-center rounded-lg"
-          :class="{ 'bg-slate-200 dark:bg-gray-600 font-semibold': isPreview }"
-          @click="isPreview = true"
-        >
-          <PreviewIcon />
-          <span>Preview</span>
-        </button>
+        <Button
+          :icon="EditorIcon"
+          text="Editor"
+          @on:click="isPreview = false"
+          :focus="!isPreview"
+        />
+        <Button :icon="PreviewIcon" text="Preview" @on:click="isPreview = true" />
       </div>
 
       <div class="flex items-center space-x-2">
@@ -81,13 +70,6 @@ const isPreview = ref<boolean>(false)
           Cancel
         </button>
         <Button :icon="ISave" text="Save" @on:click="" variant="primary" />
-        <!-- <button
-          type="submit"
-          class="inline-flex items-center py-2 px-4 space-x-1 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-        >
-          <ISave />
-          <span>Save</span>
-        </button> -->
       </div>
     </div>
   </div>
