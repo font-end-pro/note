@@ -1,23 +1,21 @@
 <template>
-  <div>
     <button
       type="button"
-      class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 max-h-10 max-w-10"
+      class="text-gray-500 dark:text-gray-400 hover:bg-white dark:hover:bg-gray-700 rounded-lg text-sm p-2.5 max-h-10 max-w-10"
       @click="onThemeChange"
     >
       <Transition name="slide-up">
-        <IDark v-if="isDark" />
+        <DarkIcon v-if="isDark" />
       </Transition>
       <Transition name="slide-up">
-        <ILight v-if="!isDark" />
+        <LightIcon v-if="!isDark" />
       </Transition>
     </button>
-  </div>
 </template>
 
 <script setup lang="ts">
-import IDark from "@/components/icons/IDark.vue";
-import ILight from "@/components/icons/ILight.vue";
+import DarkIcon from "@/components/header/DarkIcon.vue";
+import LightIcon from "@/components/header/LightIcon.vue";
 import { ref } from "vue";
 
 const isDark = ref<boolean>(false);

@@ -1,19 +1,20 @@
 <script setup lang="ts">
+import { RouterView } from 'vue-router'
 
-import { RouterView } from "vue-router";
-
-import Footer from "./components/Footer.vue";
-import Header from "./components/Header.vue";
+import Footer from './components/Footer.vue'
+import Header from './components/header/Header.vue'
 </script>
 
 <template>
-  <main class="main-container w-screen relative min-h-screen min-w-screen dark:bg-[#0F172A] dark:text-gray-400">
+  <main
+    class="main-container w-screen relative min-h-screen min-w-screen dark:bg-[#0F172A] dark:text-gray-400"
+  >
     <Header />
 
-    <div class="flex flex-row justify-center">
-        <Transition name="bounce">
-          <RouterView />
-        </Transition>
+    <div class="flex flex-row justify-center w-full max-w-screen-md mx-auto">
+      <Transition name="slide-fade">
+        <RouterView />
+      </Transition>
     </div>
 
     <Footer />
@@ -21,23 +22,17 @@ import Header from "./components/Header.vue";
 </template>
 
 <style>
-@import url("./assets/base.css");
-.bounce-enter-active {
-  animation: bounce-in 0.5s;
-}
-.bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.25);
-  }
-  100% {
-    transform: scale(1);
-  }
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
 }
 
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}
 </style>

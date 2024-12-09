@@ -1,3 +1,23 @@
+<script setup lang="ts">
+import DropIndicator from "./DropIndicator.vue";
+
+const props = defineProps<{
+  card: {
+    id: string;
+    title: string;
+    column: string;
+  };
+}>();
+
+const emit = defineEmits(['drag-start']);
+
+const handleDragStart = (card: typeof props.card) => {
+  emit("drag-start", card);
+};
+
+</script>
+
+
 <template>
   <div>
     <DropIndicator :beforeId="card.id" :column="card.column" />
@@ -10,19 +30,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    card: Object,
-  },
-  emits: ["drag-start"],
-  setup(_, { emit }) {
-    const handleDragStart = (card) => {
-      emit("drag-start", card);
-    };
-
-    return { handleDragStart };
-  },
-};
-</script>

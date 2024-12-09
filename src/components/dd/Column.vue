@@ -1,3 +1,60 @@
+<script setup lang="ts">
+import { ref, computed } from "vue";
+import Card from "./Card.vue";
+import DropIndicator from "./DropIndicator.vue";
+import AddCard from "./AddCard.vue";
+
+const props = defineProps<{
+  title: string;
+  headingColor: string;
+  cards: {
+    id: string;
+    title: string;
+    column: string;
+  }[];
+  column: string;
+}>();
+
+const emit = defineEmits(["update-cards"]);
+
+const active = ref(false);
+
+  const filteredCards = computed(() =>
+      props.cards.filter((card) => card.column === props.column)
+  );
+
+  const handleDragStart = (card: any) => {
+    const transferData = { ...card, column: props.column };
+    localStorage.setItem("draggedCard", JSON.stringify(transferData));
+  };
+
+  const handleDragOver = () => {
+    active.value = true;
+  };
+
+  const handleDragLeave = () => {
+    active.value = false;
+  };
+
+  const handleDrop = () => {
+    const draggedCard = JSON.parse((localStorage as any).getItem("draggedCard"));
+    const updatedCards = props.cards.filter(
+      (card) => card.id !== draggedCard.id
+    );
+
+    draggedCard.column = props.column;
+    updatedCards.push(draggedCard);
+
+    emit("update-cards", updatedCards);
+    active.value = false;
+  };
+
+  const addCard = (newCard: any) => {
+    const updatedCards = [...props.cards, newCard];
+    emit("update-cards", updatedCards);
+  };
+</script>
+
 <template>
   <div class="w-56 shrink-0">
     <div class="mb-3 flex items-center justify-between">
@@ -16,74 +73,8 @@
         :card="card"
         @drag-start="handleDragStart"
       />
-      <DropIndicator :beforeId="null" :column="column" />
+      <DropIndicator :beforeId="0" :column="column" />
       <AddCard :column="column" @add-card="addCard" />
     </div>
   </div>
 </template>
-
-<script>
-import { ref, computed } from "vue";
-import Card from "./Card.vue";
-import DropIndicator from "./DropIndicator.vue";
-import AddCard from "./AddCard.vue";
-
-export default {
-  components: { Card, DropIndicator, AddCard },
-  props: {
-    title: String,
-    headingColor: String,
-    cards: Array,
-    column: String,
-  },
-  emits: ["update-cards"],
-  setup(props, { emit }) {
-    const active = ref(false);
-
-    const filteredCards = computed(() =>
-      props.cards.filter((card) => card.column === props.column)
-    );
-
-    const handleDragStart = (card) => {
-      const transferData = { ...card, column: props.column };
-      localStorage.setItem("draggedCard", JSON.stringify(transferData));
-    };
-
-    const handleDragOver = () => {
-      active.value = true;
-    };
-
-    const handleDragLeave = () => {
-      active.value = false;
-    };
-
-    const handleDrop = () => {
-      const draggedCard = JSON.parse(localStorage.getItem("draggedCard"));
-      const updatedCards = props.cards.filter(
-        (card) => card.id !== draggedCard.id
-      );
-
-      draggedCard.column = props.column;
-      updatedCards.push(draggedCard);
-
-      emit("update-cards", updatedCards);
-      active.value = false;
-    };
-
-    const addCard = (newCard) => {
-      const updatedCards = [...props.cards, newCard];
-      emit("update-cards", updatedCards);
-    };
-
-    return {
-      active,
-      filteredCards,
-      handleDragStart,
-      handleDragOver,
-      handleDragLeave,
-      handleDrop,
-      addCard,
-    };
-  },
-};
-</script>

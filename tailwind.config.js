@@ -4,6 +4,10 @@ module.exports = {
     "./src/**/*.{vue,js,ts}",
     "./src/**/**/*.{vue,js,ts}"
   ],
+  safeList: [
+    "w-4",
+    "h-4",
+  ],
   theme: {
     extend: {},
   },

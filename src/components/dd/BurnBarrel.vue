@@ -1,3 +1,25 @@
+<script setup lang="ts">
+import { ref, defineEmits } from "vue";
+
+const active = ref(false);
+
+const emit = defineEmits(["remove-card"]);
+
+    const handleDragOver = () => {
+      active.value = true;
+    };
+
+    const handleDragLeave = () => {
+      active.value = false;
+    };
+        const handleDrop = () => {
+          const draggedCard = JSON.parse((localStorage as any).getItem("draggedCard"));
+          emit("remove-card", draggedCard.id);
+          active.value = false;
+        };
+</script>
+
+
 <template>
   <div
     @drop="handleDrop"
@@ -10,32 +32,3 @@
     <component :is="active ? 'fa-fire' : 'fi-trash'" />
   </div>
 </template>
-
-<script>
-import { ref } from "vue";
-// import { FaFire, FiTrash } from "vue-icons/fa";
-
-export default {
-  // components: { FaFire, FiTrash },
-  emits: ["remove-card"],
-  setup(_, { emit }) {
-    const active = ref(false);
-
-    const handleDragOver = () => {
-      active.value = true;
-    };
-
-    const handleDragLeave = () => {
-      active.value = false;
-    };
-
-    const handleDrop = () => {
-      const draggedCard = JSON.parse(localStorage.getItem("draggedCard"));
-      emit("remove-card", draggedCard.id);
-      active.value = false;
-    };
-
-    return { active, handleDragOver, handleDragLeave, handleDrop };
-  },
-};
-</script>

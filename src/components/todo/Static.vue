@@ -10,9 +10,9 @@ const store = useToDoStore();
 
 <template>
   <div
-    class="static-container flex justify-around flex-row flex-wrap gap-2 p-5 dark:text-[#A5B4FC]"
+    class="static-container grid grid-cols-4 justify-around gap-2 p-5 dark:text-[#A5B4FC] [&>div]:bg-white dark:[&>div]:bg-slate-800 [&>div]:shadow-md [&>div]:rounded-lg [&>div]:teext-center [&>div]:p-4"
   >
-    <div class="bg-white dark:bg-slate-800">
+    <div>
       <h1><ITotal />Total</h1>
       <h2>
         {{
@@ -20,19 +20,19 @@ const store = useToDoStore();
         }}
       </h2>
     </div>
-    <div class="bg-white dark:bg-slate-800">
+    <div>
       <h1><IDelete />Deleted</h1>
       <h2>{{ store.deleteCount }}</h2>
     </div>
-    <div class="bg-white dark:bg-slate-800">
+    <div>
       <h1><IWrite />Pending</h1>
       <h2>{{ store.pendingListComputed.length - 1 }}</h2>
     </div>
-    <div class="bg-white dark:bg-slate-800">
+    <div>
       <h1><IComplete />Completed</h1>
       <h2>{{ store.doneListComputed.length }}</h2>
     </div>
-    <div class="progress w-full bg-white rounded-full dark:bg-slate-800">
+    <div class="progress w-full rounded-full">
       <div
         class="bg-blue-600 text-xs font-medium text-blue-100 text-center py-0.5 leading-none rounded-full duration-1000 drop-shadow-lg"
         :style="`width: ${store.progressComputed}%`"
@@ -42,25 +42,3 @@ const store = useToDoStore();
     </div>
   </div>
 </template>
-
-<style scoped>
-.static-container > div {
-  padding: 1rem;
-  border-radius: 0.5rem;
-  flex: 20%;
-  text-align: center;
-  box-shadow: 2px 2px 4px #888;
-}
-.static-container > div > h1 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.25rem;
-}
-.static-container > div > h2 {
-  font-size: 1rem;
-  font-weight: 500;
-}
-</style>

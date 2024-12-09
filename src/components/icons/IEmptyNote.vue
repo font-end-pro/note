@@ -1,6 +1,6 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94 93" width="9em" height="10em">
-    <g fill="none" fill-rule="evenodd" transform="translate(-2)">
+    <g fill="none" fill-rule="evenodd">
       <rect width="96" height="96" />
       <ellipse cx="47" cy="87" fill="#F2F2F2" rx="45" ry="6" />
       <path
