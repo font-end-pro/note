@@ -1,18 +1,17 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import Input from '@/components/common/Input.vue'
 import Button from '@/components/common/Button.vue'
 import IAdd from '@/components/icons/IAdd.vue'
-import IPending from '@/components/todo/PendingIcon.vue'
 import { useToDoStore } from '@/stores/todo'
-import { ref } from 'vue'
-const store = useToDoStore()
+
+const todoStore = useToDoStore()
 
 const noteInput = ref('')
 
 const onSaveNote = () => {
   if (noteInput.value.trim()) {
-    let date = new Date()
-    store.addNote(store.pendingList.length, noteInput.value, false)
+    todoStore.addNote(noteInput.value)
     noteInput.value = ''
   }
 }
@@ -21,6 +20,6 @@ const onSaveNote = () => {
 <template>
   <div class="flex space-x-2 justify-center w-full mx-auto">
     <Input placeholder="✎ Input somethings to do..." @update:input="noteInput = $event" />
-    <Button :icon="IAdd" text="Add" @on:click="onSaveNote" variant="primary" />
+    <Button :icon="IAdd" text="Add" @on:click="onSaveNote" variant="purple" />
   </div>
 </template>

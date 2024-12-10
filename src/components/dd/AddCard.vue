@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import { ref, defineEmits } from "vue";
+import { ref } from 'vue'
 
 const props = defineProps<{
-  column: string;
-}>();
+  column: string
+}>()
 
-const emit = defineEmits(["add-card"]);
+const emit = defineEmits(['add-card'])
 
-const text = ref("");
-const adding = ref(false);
+const text = ref('')
+const adding = ref(false)
 
-    const handleSubmit = () => {
-      if (!text.value.trim()) return;
+const handleSubmit = () => {
+  if (!text.value.trim()) return
 
-      const newCard = {
-        id: Math.random().toString(36).substring(7),
-        title: text.value.trim(),
-        column: props.column,
-      };
+  const newCard = {
+    id: Math.random().toString(36).substring(7),
+    title: text.value.trim(),
+    column: props.column,
+  }
 
-      emit("add-card", newCard);
-      text.value = "";
-      adding.value = false;
-    };
+  emit('add-card', newCard)
+  text.value = ''
+  adding.value = false
+}
 </script>
 
 <template>

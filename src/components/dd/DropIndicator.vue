@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
 defineProps<{
-  beforeId: string | number;
-  column: string;
-}>();
+  beforeId: string | number
+  column: string
+}>()
 </script>
 
 <template>

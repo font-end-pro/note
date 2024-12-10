@@ -40,7 +40,12 @@ const isPreview = ref<boolean>(false)
           @on:click="isPreview = false"
           :focus="!isPreview"
         />
-        <Button :icon="PreviewIcon" text="Preview" @on:click="isPreview = true" />
+        <Button
+          :icon="PreviewIcon"
+          text="Preview"
+          @on:click="isPreview = true"
+          :focus="isPreview"
+        />
       </div>
 
       <div class="flex items-center space-x-2">

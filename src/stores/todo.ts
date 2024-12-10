@@ -1,89 +1,57 @@
+import { dateFormatter } from '@/utils'
 import { defineStore } from 'pinia'
-import { ref, computed, reactive } from 'vue'
+import { computed, reactive } from 'vue'
+
+type Note = {
+  id: number
+  content: string
+  time: string
+  isDone: boolean
+}
 
 export const useToDoStore = defineStore('todo', () => {
-  const note = ref({
-    id: 0,
-    content: '',
-    time: '',
-    isDone: false,
-  })
-  const pendingList = reactive([{ id: 0, content: '', time: '', isDone: false }])
-  const doneList = reactive([{ id: 0, content: '', time: '', isDone: false }])
-  const lengthNote = computed(() => {
-    return note.value.content.length
-  })
-  const addNote = (id: number, newNote: string, status: boolean) => {
-    note.value.id = id
-    note.value.content = newNote
-    const date = new Date()
-    const year = date.getFullYear().toString()
-    const month = date.getUTCMonth().toString()
-    const day = date.getUTCDate().toString()
-    const hour = date.getHours().toString()
-    const minute = date.getMinutes().toString()
-    const second = date.getSeconds().toString()
-    note.value.time = year
-      .concat('/')
-      .concat(month)
-      .concat('/')
-      .concat(day)
-      .concat(' - ')
-      .concat(hour)
-      .concat(':')
-      .concat(minute)
-      .concat(':')
-      .concat(second)
+  const list = reactive<Array<Note>>([])
 
-    note.value.isDone = status
-
-    pendingList.push({
-      id: note.value.id,
-      content: note.value.content,
-      time: note.value.time,
+  const addNote = (text: string) => {
+    let newId = Date.now()
+    list.push({
+      id: newId,
+      content: text,
+      time: dateFormatter(newId),
       isDone: false,
     })
   }
-  const saveDoneList = (id: number, content: string, time: string, isDone: boolean) => {
-    doneList.push({ id: id, content: content, time: time, isDone: isDone })
 
-    const todo = pendingList.find((todo) => todo.id === id)
-    todo.isDone = true
-  }
-  const pendingListComputed = computed(() => {
-    return pendingList.filter((el) => el.isDone === false)
+  const markCompleted = (id: number) => (list.find((el) => el.id === id)!.isDone = true)
+
+  const progressingNotes = computed(() => {
+    return list.filter((el) => el.isDone === false)
   })
-  const doneListComputed = computed(() => {
-    return pendingList.filter((el) => el.isDone === true)
+
+  const completedNotes = computed(() => {
+    return list.filter((el) => el.isDone === true)
   })
-  const deletePendingNote = (id: number) => {
-    const todo = pendingListComputed.value.find((todo) => todo.id === id)
-    todo.isDone = NaN
+
+  const deleteNote = (id: number) => {
+    const index = list.findIndex((el) => el.id === id)
+    list.splice(index, 1)
   }
-  const deleteDoneNote = (id: number) => {
-    const todo = doneListComputed.value.find((todo) => todo.id === id)
-    todo.isDone = NaN
-  }
-  const progressComputed = computed(() => {
+
+  const donePercent = computed(() => {
     let progress = 0
-    if (doneListComputed.value.length > 0) {
-      progress =
-        (doneListComputed.value.length * 100) /
-        (pendingListComputed.value.length + doneListComputed.value.length - 1)
+    if (completedNotes.value.length > 0) {
+      progress = (completedNotes.value.length * 100) / list.length
     }
     return parseFloat(progress.toString()).toFixed(2)
   })
+
   return {
-    note,
-    pendingList,
-    pendingListComputed,
-    doneList,
-    doneListComputed,
-    lengthNote,
+    list,
     addNote,
-    saveDoneList,
-    deletePendingNote,
-    deleteDoneNote,
-    progressComputed,
+    markCompleted,
+    progressingNotes,
+    completedNotes,
+    deleteNote,
+    donePercent,
   }
 })

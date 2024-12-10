@@ -4,7 +4,7 @@ const props = defineProps<{
   icon: Component
   text: string
   class?: string
-  variant?: 'default' | 'primary' | 'secondary'
+  variant?: 'default' | 'primary' | 'purple' | 'green'
   disabled?: boolean
   focus?: boolean
 }>()
@@ -21,8 +21,14 @@ const style = computed(() => {
       return 'font-medium text-white shadow-lg hover:shadow-md bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
     // case 'secondary':
     //   return 'font-medium text-gray-700 shadow-lg hover:shadow-md bg-gray-200 border-gray-200 hover:bg-gray-300 focus:ring-2 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'
+    case 'purple':
+      return 'font-medium text-white shadow-lg hover:shadow-md bg-purple-500 border-purple-500 hover:bg-purple-600 focus:ring-2 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-600'
+    // case 'green':
+    //   return 'font-medium text-white shadow-lg hover:shadow-md bg-green-700 border-green-700 hover:bg-green-800 focus:ring-2 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800'
     default:
-      return `${props.focus ? 'bg-slate-200 font-medium bg-slate-200 dark:bg-gray-600 dark:text-gray-300' : 'font-normal text-gray-500'} focus:font-medium focus:text-gray-700 focus:bg-slate-200 dark:focus:bg-gray-600 dark:focus:text-gray-300`
+      return props.focus
+        ? 'bg-slate-200 font-medium bg-slate-200 dark:bg-gray-600 dark:text-gray-300'
+        : 'font-normal text-gray-500'
   }
 })
 </script>
